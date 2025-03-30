@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MetriX</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+<div class="container">
+    <header class="app-header">
+        <h1><i class="fas fa-brain"></i> MetriX</h1>
+        <h2> ML Algorithms Metrics Hub </h2>
+        <p class="subtitle">Upload your dataset and analyze machine learning metrics</p>
+    </header>
+
+    <main class="content-wrapper">
+        <section class="card data-input-section">
+            <h2><i class="fas fa-upload"></i> Data Input</h2>
+            <div class="upload-options">
+                <div class="upload-box">
+                    <label for="file-upload" class="custom-file-upload">
+                        <i class="fas fa-file-upload"></i>
+                        <span>Drop your file here</span>
+                        <span class="small-text">or click to browse</span>
+                    </label>
+                    <input type="file" id="file-upload" accept=".csv, .xlsx">
+                    <span id="file-name" class="file-name">No file chosen</span>
+                </div>
+                
+                <div class="divider">
+                    <span class="divider-text">or</span>
+                </div>
+
+                <div class="url-input-wrapper">
+                    <div class="url-input">
+                        <i class="fas fa-link input-icon"></i>
+                        <input type="text" id="dataset-url" placeholder="Paste dataset URL here">
+                    </div>
+                    <button onclick="importFromURL()" class="btn secondary-btn">
+                        <i class="fas fa-download"></i> Import
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="card algorithm-section">
+            <h2><i class="fas fa-cogs"></i> Algorithm Selection</h2>
+            <div class="algorithm-wrapper">
+                <div class="select-wrapper">
+                    <i class="fas fa-code-branch input-icon"></i>
+                    <select id="algorithm" class="algorithm-select">
+                        <option value="" disabled selected>Choose an algorithm</option>
+                        <option value="logistic_regression">Logistic Regression</option>
+                        <option value="decision_tree">Decision Tree</option>
+                        <option value="random_forest">Random Forest</option>
+                        <option value="svm">Support Vector Machine</option>
+                        <option value="knn">K-Nearest Neighbors</option>
+                    </select>
+                </div>
+                <button onclick="getMetrics()" class="btn primary-btn">
+                    <i class="fas fa-chart-bar"></i> Generate Metrics
+                </button>
+            </div>
+        </section>
+
+        <section class="card metrics-section" id="metrics">
+        
+        </section>
+    </main>
+</div>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
